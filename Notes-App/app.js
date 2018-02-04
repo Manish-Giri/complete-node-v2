@@ -6,13 +6,17 @@ const notes = require('./notes.js');
 //fs.appendFile('hello.txt', 'This is some text! ', () => {console.log("Writing to file")});
 
 
-// console.log('Process', process.argv);
 
-const command = process.argv[2];
+// PROCESS
+// console.log('Process', process.argv);
+// const command = process.argv[2];
 // console.log(command);
 
+// YARGS
 const argv = yargs.argv;
-console.log('Yargs', argv);
+const command = argv._[0];
+// console.log('Yargs', argv);
+
 
 if(command === 'add') {
     console.log('Adding new note');
