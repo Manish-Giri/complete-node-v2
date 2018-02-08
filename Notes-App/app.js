@@ -15,7 +15,7 @@ const notes = require('./notes.js');
 // YARGS
 const argv = yargs.argv;
 const command = argv._[0];
-// console.log('Yargs', argv);
+console.log('Yargs', argv);
 
 
 if(command === 'add') {
@@ -34,6 +34,8 @@ if(command === 'add') {
 
 else if(command === 'remove') {
     console.log('Removing note');
+    const message = notes.removeNote(argv.title) ? "Note was successfully removed" : "Note with that title was not found";
+    console.log(message);
 }
 
 else if(command === 'list') {

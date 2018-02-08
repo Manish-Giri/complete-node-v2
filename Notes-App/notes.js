@@ -53,6 +53,17 @@ const readNote = (title) => {
     console.log(`Fetched note => Title: ${title}, Body: ${body}`)
 };
 
-module.exports = {addNote, listNote, readNote};
+
+const removeNote = title => {
+    // get all notes
+    let notes = fetchNotes();
+    let newNotes = notes.filter(note => note.title !== title);
+    //save new notes
+    saveNotes(newNotes);
+    // return length true/false
+    return newNotes.length !== notes.length;
+};
+
+module.exports = {addNote, listNote, readNote, removeNote};
 
 // console.log(module);
