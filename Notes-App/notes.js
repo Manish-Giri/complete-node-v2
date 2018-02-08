@@ -1,5 +1,11 @@
 const fs = require('fs');
 
+//--------------------------------------------
+
+// ----- HELPERS
+
+//--------------------------------------------
+
 
 const fetchNotes = () => {
     // fetch existing notes from file system
@@ -16,10 +22,19 @@ const fetchNotes = () => {
 const saveNotes = notes => {
     fs.writeFileSync('notes-data.json', JSON.stringify(notes));
     //console.log('New note successfully added!');
-}
+};
+
+const logNotes = note => {
+    console.log(`Note: 
+        Title: ${fetchedNote.title} 
+        Body: ${fetchedNote.body}
+        `);
+};
+
+
+//--------------------------------------------
 
 const addNote = (title, body) => {
-    // console.log(`Adding note => ${title}: ${body}`);
 
     // create new note
     const note = {title, body};
@@ -39,9 +54,8 @@ const addNote = (title, body) => {
        return note;
     }
 
-
-
 };
+
 
 
 const listNote = () => {
@@ -50,7 +64,14 @@ const listNote = () => {
 };
 
 const readNote = (title) => {
-    console.log(`Fetched note => Title: ${title}, Body: ${body}`)
+    // console.log(`Fetched note => Title: ${title}, Body: ${body}`)
+    // fetch all notes
+    const notes = fetchNotes();
+    // get notes that match title
+    const fetchedNote = notes.filter(note => note.title === title);
+    // return first item
+    return fetchedNote[0];
+
 };
 
 
@@ -64,6 +85,6 @@ const removeNote = title => {
     return newNotes.length !== notes.length;
 };
 
-module.exports = {addNote, listNote, readNote, removeNote};
+module.exports = {addNote, listNote, readNote, removeNote, logNotes};
 
 // console.log(module);

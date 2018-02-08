@@ -15,17 +15,14 @@ const notes = require('./notes.js');
 // YARGS
 const argv = yargs.argv;
 const command = argv._[0];
-console.log('Yargs', argv);
+//console.log('Yargs', argv);
 
 
 if(command === 'add') {
     console.log('Adding new note');
     let res  = notes.addNote(argv.title, argv.body);
     if(res) {
-        console.log(`Note created: 
-        Title: ${res.title} 
-        Body: ${res.body}
-        `);
+        notes.logNotes(res);
     }
     else {
         console.log('A note with that title already exists');
@@ -44,5 +41,12 @@ else if(command === 'list') {
 
 else if(command === 'read') {
     console.log('Reading note');
+    const fetchedNote = notes.readNote(argv.title);
+    if(fetchedNote) {
+        notes.logNotes(fetchedNote);
+    }
+    else {
+        console.log('A note with that title was not found');
+    }
 }
 
