@@ -15,11 +15,11 @@ const fetchNotes = () => {
 
 const saveNotes = notes => {
     fs.writeFileSync('notes-data.json', JSON.stringify(notes));
-    console.log('New note successfully added!');
+    //console.log('New note successfully added!');
 }
 
 const addNote = (title, body) => {
-    console.log(`Adding note => ${title}: ${body}`);
+    // console.log(`Adding note => ${title}: ${body}`);
 
     // create new note
     const note = {title, body};
@@ -36,12 +36,9 @@ const addNote = (title, body) => {
         notes.push(note);
         // add to file system
        saveNotes(notes);
+       return note;
     }
 
-
-    else {
-        console.log('Sorry! A note with that title already exists');
-    }
 
 
 };

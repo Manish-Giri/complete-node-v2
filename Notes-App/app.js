@@ -20,7 +20,16 @@ const command = argv._[0];
 
 if(command === 'add') {
     console.log('Adding new note');
-    notes.addNote(argv.title, argv.body);
+    let res  = notes.addNote(argv.title, argv.body);
+    if(res) {
+        console.log(`Note created: 
+        Title: ${res.title} 
+        Body: ${res.body}
+        `);
+    }
+    else {
+        console.log('A note with that title already exists');
+    }
 }
 
 else if(command === 'remove') {
